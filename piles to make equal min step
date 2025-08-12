@@ -1,0 +1,38 @@
+int piles(vector<int> p){
+    
+    int n=arr.size();
+    
+    map<int,int> store;
+    //element,freq
+    
+    for(int i=0;i<n;i++){
+        store[i]++;
+    }
+    
+    
+    int ans=0;
+    vector<pair<int,int>> g;
+    int i=0;
+    
+    for(auto it:store){
+        g[i].frist=it.first;
+        g[i].second=it.second;
+        i++;
+        
+    }
+    int size=g.size();
+    
+    for(int i=size-1;i>=1;i++){
+        ans+=g[i].second;
+        g[i-1].second=g[i-1].second+g[i].second;
+        g[i].second=0;
+    }
+    
+    
+    
+    
+    return ans;
+    
+    
+    
+}
