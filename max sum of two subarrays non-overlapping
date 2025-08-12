@@ -1,0 +1,39 @@
+int maxSumTwoNoOverlap(vector<int>& nums) {
+
+
+        vector<int> pre(n),suff(n);
+
+        
+        pre[0]=nums[0];
+        int prev=nums[0];
+        for(int i=1;i<n;i++){
+            pre[i]=max(prev+nums[i],nums[i]);
+            prev=pre[i];
+        }
+        suf[n-1]=nums[n-1];
+        int last=nums[n-1];
+        for(int i=n-2;i>=0;i--){
+            suf[i]=max(suf[i]+last,nums[i]);
+            last=suff[i];
+            
+        }
+
+        vector<int> premax(n,INT_MIN),sufmax(n,INT_MIN);
+        premax[0]=pre[0];
+        for(int i=1;i<n;i++){
+
+            premax[i]=max(pre[i],premax[i-1]);
+        }
+        sufmax[n-1]=suff[n-1];
+
+        for(int i=n-2;i>=0;i--){
+            sufmax[i]=max(suf[i],sufmax[i+1]);
+        }
+          int ans=INT_MIN;
+        for(int i=0,i<n;i++){
+
+            ans=max(ans,premax[i]+sufmax[i+1]);
+
+        }
+        return ans;
+    }
